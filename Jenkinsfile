@@ -43,6 +43,7 @@ pipeline {
                         -Dsonar.host.url=http://localhost:9000 ^
                         -Dsonar.login=${env.SONAR_TOKEN} ^
                         -Dsonar.java.binaries=target/classes
+                        -Dsonar.verbose=true
                     """
                 }
             }
