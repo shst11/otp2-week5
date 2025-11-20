@@ -16,6 +16,7 @@ pipeline {
         // Define Docker image tag
         DOCKER_IMAGE_TAG = 'latest'
         SONAR_TOKEN = credentials('Sonar_token')
+        SONARQUBE_SERVER = 'SonarQubeServer'
     }
 
     stages {
