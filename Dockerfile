@@ -1,18 +1,17 @@
-# Use official Maven image
+# Use an official Maven image as a parent image
 FROM maven:latest
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy Maven configuration and source code
-COPY pom.xml .
-COPY src ./src
+# Copy the pom.xml file to the container
+COPY pom.xml /app/
 
-# Build the project (skip tests to speed up build)
-RUN mvn clean package -DskipTests
+# Copy the entire project to the container
+COPY . /app/
 
-# Copy the built JAR to a standard name
-RUN cp target/week-5-1.0-SNAPSHOT.jar App.jar
+# Package your application
+RUN mvn package
 
-# Run the application
-CMD ["java", "-jar", "/app/App.jar"]
+# Run the main class (assuming your application has a main class)
+CMD ["java", "-jar", "target/app.jar"]
