@@ -1,19 +1,17 @@
-FROM openjdk:17-slim
+# Use an official Maven image as a parent image
+FROM maven:latest
 
+# Set the working directory in the container
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    libx11-6 libxext6 libxrender1 libxtst6 libxi6 libgtk-3-0 wget unzip && \
-    rm -rf /var/lib/apt/lists/*
+# Copy the pom.xml file to the container
+COPY pom.xml /app/
 
-RUN mkdir -p /javafx-sdk && \
-    wget -O javafx.zip https://download2.gluonhq.com/openjfx/21.0.2/openjfx-21.0.2_linux-x64_bin-sdk.zip && \
-    unzip javafx.zip -d /javafx-sdk && \
-    mv /javafx-sdk/javafx-sdk-21.0.2/lib /javafx-sdk/lib && \
-    rm -rf /javafx-sdk/javafx-sdk-21.0.2 javafx.zip
+# Copy the entire project to the container
+COPY . /app/
 
-COPY target/week-5-1.0-SNAPSHOT.jar app.jar
+# Package your application
+RUN mvn package
 
-ENV DISPLAY=host.docker.internal:0.0
-
-CMD ["java", "--module-path", "/javafx-sdk/lib", "--add-modules", "javafx.controls,javafx.fxml", "-jar", "app.jar"]
+# Run the main class (assuming your application has a main class)
+CMD ["java", "-jar", "target/app.jar"]
