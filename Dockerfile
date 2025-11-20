@@ -13,5 +13,6 @@ COPY . /app/
 # Package your application
 RUN mvn package
 
+
 # Run the main class (assuming your application has a main class)
 CMD ["java", "-jar", "target/app.jar"]

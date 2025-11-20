@@ -11,7 +11,6 @@ public class App {
         System.out.print("How many numbers to display in the loop? ");
         int count;
 
-        // Validate input
         if (scanner.hasNextInt()) {
             count = scanner.nextInt();
         } else {
@@ -19,7 +18,6 @@ public class App {
             count = 5;
         }
 
-        // Call the method
         displayNumbers(count);
 
         scanner.close();
