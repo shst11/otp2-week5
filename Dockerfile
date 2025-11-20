@@ -4,14 +4,10 @@ FROM maven:latest
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the pom.xml file to the container
-COPY pom.xml /app/
 
-# Copy the entire project to the container
-COPY . /app/
+COPY target/week-5-1.0-SNAPSHOT.jar /app/App.jar
 
-# Package your application
-RUN mvn package
+
 
 # Run the main class (assuming your application has a main class)
-CMD ["java", "-jar", "target/week-5-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/App.jar"]
