@@ -14,4 +14,4 @@ COPY . /app/
 RUN mvn package
 
 # Run the main class (assuming your application has a main class)
-CMD ["java", "-jar", "target/app.jar"]
+CMD ["java", "-jar", "target/week-5-1.0-SNAPSHOT.jar"]
