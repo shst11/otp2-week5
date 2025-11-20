@@ -39,16 +39,16 @@ pipeline {
                     bat """
                         ${tool 'SonarScanner'}\\bin\\sonar-scanner ^
                         -Dsonar.projectKey=week5 ^
-                        -Dsonar.sources=src ^
                         -Dsonar.projectName=Week5 ^
-                        -Dsonar.host.url=http://localhost:9000 ^
-                        -Dsonar.login=${env.SONAR_TOKEN} ^
-                        -Dsonar.java.binaries=target/classes
+                        -Dsonar.sources=src ^
+                        -Dsonar.java.binaries=target/classes ^
+                        -Dsonar.login=%SONAR_TOKEN% ^
                         -Dsonar.verbose=true
                     """
                 }
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
